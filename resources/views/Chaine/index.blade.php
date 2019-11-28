@@ -1,11 +1,17 @@
 <ul>
     @foreach ($chaines as $chaine)
         <li>{{ $chaine->nom }} {{ $chaine->type }} {{ $chaine->lien }}
-            <form action="#" method="post">
+            <form action="{{ route('Chaine.destroy', $chaine->id)}}" method="post">
                     @method('DELETE')
                     @csrf
                 <button class="btn btn-danger" type="submit">Delete</button>
-              </form></li>
+              </form>
+              <form action="{{ route('Chaine.show', $chaine->id)}}" method="get">
+                @csrf
+            <button class="btn btn-danger" type="submit">Afficher</button>
+          </form>
+
+              </li>
     @endforeach
     {{ $chaines->links() }}
 
