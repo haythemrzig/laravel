@@ -15,3 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('Chaine', 'ChaineController');
+Route::resource('Joueur', 'JoueurController');
+
