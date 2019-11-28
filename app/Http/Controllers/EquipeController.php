@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\League;
+use App\Equipe;
 
-class LeagueController extends Controller
+class EquipeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        $league= League::orderBy('nom')->paginate(10);
-        return view('Ligue.index',[
-            'ligues'=> $league
+        $equipe= Equipe::orderBy('nom')->paginate(10);
+        return view('Equipe.index',[
+            'equipes'=> $equipe
         ]);
     }
 
@@ -27,8 +27,8 @@ class LeagueController extends Controller
      */
     public function create()
     {
-        $ligue = new League();
-        return view('League.index');
+        $equipe = new Equipe();
+        return view('Equipe.index');
     }
 
     /**
@@ -40,16 +40,23 @@ class LeagueController extends Controller
     public function store(Request $request)
     {
         request()->validate([
+            'logo' => 'required',
+            'historique' => 'required',
             'nom' => 'required',
             'pays' => 'required'
         ]);
+        
+        $logo = request('logo');
+        $historique = request('historique');
         $nom = request('nom');
         $pays = request('pays');
-        $ligue=new League();
-        $ligue->nom=$nom;
-        $ligue->pays=$pays;
-        $ligue->save();
-return back();
+        $equipe=new Equipe();
+        $equipe->logo=$logo;
+        $equipe->historique=$historique;
+        $equipe->nom=$nom;
+        $equipe->pays=$pays;
+        $equipe->save();
+        return back();
     }
 
     /**
@@ -60,8 +67,9 @@ return back();
      */
     public function show($id)
     {
-        $ligue=League::find($id);
-        return view('Ligue.show')->with('ligue', $ligue);
+        $equipe=Equipe::find($id);
+        return view('Equipe.show')->with('equipe', $equipe);
+   
     }
 
     /**
@@ -72,8 +80,8 @@ return back();
      */
     public function edit($id)
     {
-        $ligue=League::find($id);
-        return view('Ligue.edit', compact('ligue'));
+        $equipe=Equipe::find($id);
+        return view('Equipe.edit', compact('equipe'));
 
     }
 
@@ -85,10 +93,11 @@ return back();
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   $ligue=League::find($id);
+    {
+        $equipe=Equipe::find($id);
         $this->validate($request, $this->validationRules());
-        $ligue->update($request->all());
-       return redirect()->route('Ligues.show', [$ligue]);
+        $equipe->update($request->all());
+        return redirect()->route('Equipes.show', [$equipe]);
 
     }
 
@@ -100,13 +109,15 @@ return back();
      */
     public function destroy($id)
     {
-        League::where('id',$id)->delete();
-         return redirect()->route('Ligues.index');
+        Equipe::where('id',$id)->delete();
+         return redirect()->route('Equipes.index');
     }
 
     private function validationRules()
     {
         return [
+            'logo' => 'required|max:50|min:2',
+            'historique' => 'required|max:50|min:2',
             'nom' => 'required|max:50|min:2',
             'pays' => 'required|max:50|min:2',
         ];
