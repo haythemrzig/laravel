@@ -63,7 +63,8 @@ return back();
      */
     public function show($id)
     {
-        //
+        $chaine=Chaine::find($id);
+        return view('Chaine.show')->with('chaine', $chaine);
     }
 
     /**
@@ -74,7 +75,9 @@ return back();
      */
     public function edit($id)
     {
-        //
+        $chaine=Chaine::find($id);
+        return view('Chaine.edit',compact('chaine'));
+
     }
 
     /**
@@ -86,7 +89,11 @@ return back();
      */
     public function update(Request $request, $id)
     {
-        //
+        $chaine=Chaine::find($id);
+        $this->validate($request, $this->validationRules());
+        $chaine->update($request->all());
+        return redirect()->route('Chaine.show', [$chaine]);
+
     }
 
     /**
@@ -97,7 +104,8 @@ return back();
      */
     public function destroy($id)
     {
-        //
+        Chaine::where('id',$id)->delete();
+        return redirect()->route('Chaine.index');
     }
 
     private function validationRules()
