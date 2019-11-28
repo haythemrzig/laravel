@@ -14,7 +14,7 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        $league= League::orderBy('nom')->paginate(2);
+        $league= League::orderBy('nom')->paginate(10);
         return view('Ligue.index',[
             'ligues'=> $league
         ]);
@@ -60,7 +60,8 @@ return back();
      */
     public function show($id)
     {
-        //
+        $ligue=League::find($id);
+        return view('Ligue.show')->with('ligue', $ligue);
     }
 
     /**
@@ -71,7 +72,9 @@ return back();
      */
     public function edit($id)
     {
-        //
+        $ligue=League::find($id);
+        return view('Ligue.edit', compact('ligue'));
+
     }
 
     /**
@@ -82,8 +85,11 @@ return back();
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   $ligue=League::find($id);
+        $this->validate($request, $this->validationRules());
+        $ligue->update($request->all());
+        return redirect()->route('Ligues.show', [$ligue]);
+
     }
 
     /**
@@ -94,7 +100,8 @@ return back();
      */
     public function destroy($id)
     {
-        //
+        League::where('id',$id)->delete();
+         return redirect()->route('Ligues.index');
     }
 
     private function validationRules()
