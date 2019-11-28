@@ -18,3 +18,5 @@ Route::get('/', function () {
 
 Route::resource('Ligues', 'LeagueController');
 Route::resource('Chaine', 'ChaineController');
+Route::resource('resultat', 'ResultatController');
+
