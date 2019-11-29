@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Resultat;
 use Illuminate\Http\Request;
-use App\League;
 
-class LeagueController extends Controller
+class ResultatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        $league= League::orderBy('nom')->paginate(10);
-        return view('Ligue.index',[
-            'ligues'=> $league
+        $resultat= Resultat::orderBy('date_resultat')->paginate(10);
+        return view('resultat.index',[
+            'resultats'=> $resultat
         ]);
     }
 
@@ -27,8 +27,8 @@ class LeagueController extends Controller
      */
     public function create()
     {
-        $ligue = new League();
-        return view('League.index');
+        $resultat = new Resultat();
+        return view('resultat.index');
     }
 
     /**
@@ -40,15 +40,12 @@ class LeagueController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'nom' => 'required',
-            'pays' => 'required'
+            'date_resultat' => 'required',
         ]);
-        $nom = request('nom');
-        $pays = request('pays');
-        $ligue=new League();
-        $ligue->nom=$nom;
-        $ligue->pays=$pays;
-        $ligue->save();
+        $date_resultat = request('date_resultat');
+        $resultat=new Resultat();
+        $resultat->date_resultat=$date_resultat;
+        $resultat->save();
 return back();
     }
 
@@ -60,8 +57,8 @@ return back();
      */
     public function show($id)
     {
-        $ligue=League::find($id);
-        return view('Ligue.show')->with('ligue', $ligue);
+        $resultat=Resultat::find($id);
+        return view('resultat.show')->with('resultat', $resultat);
     }
 
     /**
@@ -72,9 +69,8 @@ return back();
      */
     public function edit($id)
     {
-        $ligue=League::find($id);
-        return view('Ligue.edit', compact('ligue'));
-
+        $resultat=Resultat::find($id);
+        return view('resultat.edit', compact('resultat'));
     }
 
     /**
@@ -85,11 +81,11 @@ return back();
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   $ligue=League::find($id);
+    {
+        $resultat=Resultat::find($id);
         $this->validate($request, $this->validationRules());
-        $ligue->update($request->all());
-        return redirect()->route('Ligues.show', [$ligue]);
-
+        $resultat->update($request->all());
+        return redirect()->route('resultat.show', [$resultat]);
     }
 
     /**
@@ -100,15 +96,13 @@ return back();
      */
     public function destroy($id)
     {
-        League::where('id',$id)->delete();
-         return redirect()->route('Ligues.index');
+        Resultat::where('id',$id)->delete();
+         return redirect()->route('resultat.index');
     }
-
     private function validationRules()
     {
         return [
-            'nom' => 'required|max:50|min:2',
-            'pays' => 'required|max:50|min:2',
+            'date_resultat' => 'required|max:50|min:2',
         ];
     }
 }

@@ -1,11 +1,18 @@
 <ul>
     @foreach ($ligues as $ligue)
         <li>{{ $ligue->nom }} {{ $ligue->pays }} 
-            <form action="#" method="post">
+            <form action="{{ route('Ligues.destroy', $ligue->id)}}" method="post">
                     @method('DELETE')
                     @csrf
                 <button class="btn btn-danger" type="submit">Delete</button>
-              </form></li>  
+              </form>
+         <form action="{{ route('Ligues.show', $ligue->id)}}" method="get">
+                @csrf
+            <button class="btn btn-danger" type="submit">Afficher</button>
+          </form>    
+            
+            
+        </li>  
     @endforeach 
     {{ $ligues->links() }}     
 
