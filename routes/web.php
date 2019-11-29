@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('admin', 'adminController');
 
 
 Route::resource('Ligues', 'LeagueController');
@@ -21,5 +22,6 @@ Route::resource('Chaine', 'ChaineController');
 Route::resource('Joueur', 'JoueurController');
 
 Route::resource('resultat', 'ResultatController');
+
 
 
