@@ -41,15 +41,23 @@ class LeagueController extends Controller
     {
         request()->validate([
             'nom' => 'required',
-            'pays' => 'required'
+            'pays' => 'required',
+            'image' => '
+            required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         $nom = request('nom');
         $pays = request('pays');
         $ligue=new League();
+
+        $image=$request->file('image');
+        $new_name= rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("images"),$new_name);
+
         $ligue->nom=$nom;
         $ligue->pays=$pays;
+        $ligue->image=$new_name;
         $ligue->save();
-return back();
+        return back();
     }
 
     /**
@@ -86,8 +94,17 @@ return back();
      */
     public function update(Request $request, $id)
     {   $ligue=League::find($id);
-        $this->validate($request, $this->validationRules());
-        $ligue->update($request->all());
+        request()->validate([
+            'nom' => 'required',
+            'pays' => 'required',
+            'image' => '
+            image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        $image=$request->file('image');
+        $new_name= rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("images"),$new_name);
+        $ligue->image=$new_name;
+        $ligue->update();
        return redirect()->route('Ligues.show', [$ligue]);
 
     }
@@ -111,4 +128,16 @@ return back();
             'pays' => 'required|max:50|min:2',
         ];
     }
+/*
+    function upload(Request $request){
+        $this->validate($request,[
+            'image' => '
+            required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        $image=$request->file('image');
+        $new_name= rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("images"),$new_name);
+        return back()->with('path',$new_name);
+    }
+  */  
 }
