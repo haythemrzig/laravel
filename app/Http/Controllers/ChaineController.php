@@ -14,7 +14,7 @@ class ChaineController extends Controller
      */
     public function index()
     {
-        $chaine= Chaine::orderBy('nom')->paginate(2);
+        $chaine= Chaine::all();
         return view('Chaine.index',[
             'chaines'=> $chaine
         ]);

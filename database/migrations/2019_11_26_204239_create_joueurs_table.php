@@ -18,6 +18,8 @@ class CreateJoueursTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->date('datedenaissance');
+            $table->string('image');
+            $table->string('equipe');
             $table->timestamps();
         });
     }

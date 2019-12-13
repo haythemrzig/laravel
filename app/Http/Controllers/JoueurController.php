@@ -42,15 +42,24 @@ class JoueurController extends Controller
         request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
-            'datedenaissance' => 'required'
+            'datedenaissance' => 'required',
+            'equipe' => 'required',
+            'image' => '
+            required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         $nom = request('nom');
         $prenom = request('prenom');
         $datedenaissance = request('datedenaissance');
+        $equipe = request('equipe');
+        $image=$request->file('image');
+        $new_name= rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("images"),$new_name);
         $joueur=new Joueur();
         $joueur->nom=$nom;
+        $joueur->equipe=$equipe;
         $joueur->prenom=$prenom;
         $joueur->datedenaissance=$datedenaissance;
+        $joueur->image=$new_name;
         $joueur->save();
 return back();
     }
@@ -88,9 +97,22 @@ return back();
      */
     public function update(Request $request, $id)
     {
+
+
         $joueur=Joueur::find($id);
-        $this->validate($request, $this->validationRules());
-        $joueur->update($request->all());
+        request()->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'datedenaissance' => 'required',
+            'equipe' => 'required',
+            'image' => '
+            required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        $image=$request->file('image');
+        $new_name= rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("images"),$new_name);
+        $joueur->image=$new_name;
+        $joueur->update();
         return redirect()->route('Joueur.show', [$joueur]);
     }
 
@@ -112,6 +134,8 @@ return back();
             'nom' => 'required|max:50|min:2',
             'prenom' => 'required|max:50|min:2',
             'datedenaissance' => 'required',
+            'image' => '
+            image|mimes:jpeg,png,jpg,gif|max:2048'
 
         ];
     }

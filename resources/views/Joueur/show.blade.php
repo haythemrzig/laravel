@@ -1,6 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ $joueur->nom.' '.$joueur->prenom.' '.$joueur->datedenaissance }}</h3>
+    <img src="../images/{{$joueur->image}}" width="100px" heigth="100px"/>
+        <h3 class="panel-title">{{ $joueur->nom.' '.$joueur->prenom.' '.$joueur->datedenaissance.' '.$joueur->equipe }}</h3>
     </div>
     <div class="panel-footer py-2">
             <div class="row">
