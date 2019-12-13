@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\actualite;
+use App\Match;
 use Illuminate\Http\Request;
 class actualiteController extends Controller
 {
@@ -16,9 +17,9 @@ class actualiteController extends Controller
         $actualite= actualite::all();
         return view('actualite.index',[
             'actualite'=> $actualite
-        ]);   
+        ]);
      }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +27,7 @@ class actualiteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    
+
     {
     $actualite = new actualite();
     return view ('actualite.index');
@@ -63,7 +64,7 @@ class actualiteController extends Controller
 
 
 
-        
+
 
     }
 
@@ -75,7 +76,7 @@ class actualiteController extends Controller
      */
     public function show(actualite $actualite)
     {
-      
+
         return view('actualite.show')->with('actualite',$actualite);
 
     }
@@ -88,7 +89,7 @@ class actualiteController extends Controller
      */
     public function edit(actualite $actualite)
     {
-    
+
         return view ('actualite.edit',compact('actualite'));
     }
 
@@ -123,7 +124,7 @@ class actualiteController extends Controller
      */
     public function destroy(actualite $actualite)
     {
-        
+
         $actualite->delete();
         return redirect()->route('actualite.index');
 
