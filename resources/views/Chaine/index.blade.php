@@ -1,6 +1,71 @@
 @extends('layouts.Myapp')
 @section('content')
+@if (Auth::check())
+<div style="background:#fff;padding:3%;;width:100%;margin:auto">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Type</th>
+      <th scope="col">Lien</th>
 
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach ($chaines as $chaine)
+  <tr>
+<td>{{ $chaine->nom }}</td>
+<td>{{ $chaine->type }}</td>
+<td>{{ $chaine->lien }}</td>
+<td>
+<form action="{{ route('Chaine.destroy', $chaine->id)}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                <button class="btn btn-danger" type="submit">Delete</button>
+              </form>
+
+</td>
+
+<td>
+
+<form action="{{ route('Chaine.show', $chaine->id)}}" method="get">
+                @csrf
+            <button class="btn btn-info" type="submit">Afficher</button>
+          </form>
+
+</td>
+
+
+  </tr>
+  @endforeach
+  </tbody>
+  </table>
+<br/>
+
+<form action="/Chaine" method="POST">
+    @csrf
+    <div class="form-group">
+        <input class="form-control @error('nom') is-invalid @enderror" type="text" name="nom" placeholder="Nom Chaine TV"/>
+        @error('nom')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <input class="form-control @error('type') is-invalid @enderror" type="text" name="type" placeholder="Type Chaine TV"/>
+        @error('type')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <input class="form-control @error('lien') is-invalid @enderror" type="text" name="lien" placeholder="Lien Chaine"/>
+        @error('lien')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <button type="submit" class="btn btn-success">Ajouter</button>
+</form>
+
+
+</div>
+@endif
 <div class="page-title">Ligues</div>
 <!-- FEATURED IMAGE -->
 <div class="page-img">
@@ -76,40 +141,3 @@
 
 
 
-<ul>
-    @foreach ($chaines as $chaine)
-        <li>{{ $chaine->nom }} {{ $chaine->type }} {{ $chaine->lien }}
-            <form action="{{ route('Chaine.destroy', $chaine->id)}}" method="post">
-                    @method('DELETE')
-                    @csrf
-                <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
-              <form action="{{ route('Chaine.show', $chaine->id)}}" method="get">
-                @csrf
-            <button class="btn btn-danger" type="submit">Afficher</button>
-          </form>
-
-              </li>
-    @endforeach
-
-
-</ul>
-
-<form action="/Chaine" method="POST">
-    @csrf
-    <div class="form-group">
-        <input class="form-control @error('nom') is-invalid @enderror" type="text" name="nom"/>
-        @error('nom')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <input class="form-control @error('type') is-invalid @enderror" type="text" name="type"/>
-        @error('type')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <input class="form-control @error('lien') is-invalid @enderror" type="text" name="lien"/>
-        @error('lien')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-    <button type="submit" class="btn btn-primary">Ajouter</button>
-</form>

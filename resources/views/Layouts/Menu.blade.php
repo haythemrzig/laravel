@@ -43,85 +43,51 @@
     <nav>
         <ul id="mainmenu">
             <li>
-                <a href="index.html">
+                <a href="#">
                     <span>Homepage</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="index.html">
-                            <span>Flexslider</span>
+                        <a href="actualite">
+                            <span>Actualite</span>
                         </a>
                     </li>
                     <li>
-                        <a href="index2.html">
-                            <span>You Tube TV</span>
+                        <a href="Chaine">
+                            <span>Chaine TV</span>
                         </a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#">
-                    <span>Pages</span>
+                    <span>Competition</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="club.html">
-                            <span>Our Club</span>
+                        <a href="Ligues">
+                            <span>Ligue</span>
                         </a>
                     </li>
                     <li>
-                        <a href="team.html">
-                            <span>Our Team</span>
+                        <a href="Equipe/all">
+                            <span>Equipe</span>
                         </a>
                     </li>
                     <li>
-                        <a href="features.html">
-                            <span>Features</span>
+                        <a href="Joueur">
+                            <span>Joueur</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="layout.html">
-                            <span>Layout</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="fixtures.html">
-                            <span>Fixtures</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="result.html">
-                            <span>Match Result</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>Dropdown</span>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <span>Item 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Item 2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Item 3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Item 4</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
+
+
                 </ul>
+            </li>
+            <li>
+                <a href="match">
+                    <span>Match</span>
+                </a>
             </li>
             <li>
                 <a href="galleries.html">

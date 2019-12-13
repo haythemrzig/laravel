@@ -1,5 +1,10 @@
+@extends('layouts.Myapp')
+@section('content')
+@if (Auth::check())
+<div class="container"style="background:#fff;padding:5%;">
+
+
 <fieldset>
-    <legend>Editer le joueur <strong>{{ $joueur->nom }} {{ $joueur->prenom }}{{ $joueur->datedenaissance }}</strong></legend>
     <form action="{{ route('Joueur.update', $joueur->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
@@ -30,6 +35,9 @@
                 @enderror
                 <small>le fichier doit etre de type .jpeg,.jpg.png</small>
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-success">Update</button>
     </form>
 </fieldset>
+</div>
+@endif
+@endsection

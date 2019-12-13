@@ -1,31 +1,59 @@
-<ul>
-    @foreach ($joueurs as $joueur)
-        <li>{{ $joueur->nom }} {{ $joueur->prenom }} {{ $joueur->datedenaissance }}
-        <img src="images/{{$joueur->image}}" width="50px" heigth="100px"/>
-            <form action="{{ route('Joueur.destroy', $joueur->id)}}" method="post">
+@extends('layouts.Myapp')
+@section('content')
+@if (Auth::check())
+
+<div class="container"style="background:#fff;padding:5%;">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">nom</th>
+      <th scope="col">prenom</th>
+      <th scope="col">date</th>
+      <th scope="col">equipe</th>
+      <th scope="col">image</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach ($joueurs as $joueur)
+  <tr>
+  <td>{{ $joueur->nom }}</td>
+  <td>{{ $joueur->prenom }}</td>
+  <td>{{ $joueur->datedenaissance }}</td>
+ <td>{{ $joueur->equipe }}</td>
+ <td>  <img src="images/{{$joueur->image}}" width="25px" heigth="25px"/></td>
+ <td>
+ <form action="{{ route('Joueur.destroy', $joueur->id)}}" method="post">
                     @method('DELETE')
                     @csrf
                 <button class="btn btn-danger" type="submit">Delete</button>
               </form>
-              <form action="{{ route('Joueur.show', $joueur->id)}}" method="get">
+ </td>
+ <td>
+ <form action="{{ route('Joueur.show', $joueur->id)}}" method="get">
                 @csrf
-            <button class="btn btn-danger" type="submit">Afficher</button>
+            <button class="btn btn-info" type="submit">Afficher</button>
           </form>
+ </td>
 
-              </li>
-    @endforeach
-    {{ $joueurs->links() }}
 
-</ul>
+  </tr>
+  @endforeach
+  </tbody>
+  </table>
+
+
+<br/>
 
 <form action="/Joueur" method="POST" enctype="multipart/form-data" >
     @csrf
     <div class="form-group">
-        <input class="form-control @error('nom') is-invalid @enderror" type="text" name="nom"/>
+        <input class="form-control @error('nom') is-invalid @enderror" type="text" name="nom" placeholder="Nom Joueur" />
         @error('nom')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
-        <input class="form-control @error('prenom') is-invalid @enderror" type="text" name="prenom"/>
+        <input class="form-control @error('prenom') is-invalid @enderror" type="text" name="prenom" placeholder="Prenom Joueur"/>
         @error('prenom')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -33,7 +61,7 @@
         @error('datedenaissance')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
-        <input class="form-control @error('equipe') is-invalid @enderror" type="text" name="equipe"/>
+        <input class="form-control @error('equipe') is-invalid @enderror" type="text" name="equipe" placeholder="Nom equipe"/>
         @error('equipe')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -44,5 +72,10 @@
         @enderror
         <small>le fichier doit etre de type .jpeg,.jpg.png</small>
     </div>
-    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <button type="submit" class="btn btn-success">Ajouter</button>
 </form>
+
+
+</div>
+@endif
+@endsection
