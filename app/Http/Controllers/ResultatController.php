@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Chaine;
+use App\Resultat;
 use Illuminate\Http\Request;
 
-class ChaineController extends Controller
+class ResultatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class ChaineController extends Controller
      */
     public function index()
     {
-        $chaine= Chaine::orderBy('nom')->paginate(2);
-        return view('Chaine.index',[
-            'chaines'=> $chaine
+        $resultat= Resultat::orderBy('date_resultat')->paginate(10);
+        return view('resultat.index',[
+            'resultats'=> $resultat
         ]);
     }
 
@@ -27,8 +27,8 @@ class ChaineController extends Controller
      */
     public function create()
     {
-        $chaine = new Chaine();
-        return view('chaine.index');
+        $resultat = new Resultat();
+        return view('resultat.index');
     }
 
     /**
@@ -40,18 +40,12 @@ class ChaineController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'nom' => 'required',
-            'type' => 'required',
-            'lien' => 'required'
+            'date_resultat' => 'required',
         ]);
-        $nom = request('nom');
-        $type = request('type');
-        $lien = request('lien');
-        $chaine=new Chaine();
-        $chaine->nom=$nom;
-        $chaine->type=$type;
-        $chaine->lien=$lien;
-        $chaine->save();
+        $date_resultat = request('date_resultat');
+        $resultat=new Resultat();
+        $resultat->date_resultat=$date_resultat;
+        $resultat->save();
 return back();
     }
 
@@ -63,8 +57,8 @@ return back();
      */
     public function show($id)
     {
-        $chaine=Chaine::find($id);
-        return view('Chaine.show')->with('chaine', $chaine);
+        $resultat=Resultat::find($id);
+        return view('resultat.show')->with('resultat', $resultat);
     }
 
     /**
@@ -75,9 +69,8 @@ return back();
      */
     public function edit($id)
     {
-        $chaine=Chaine::find($id);
-        return view('Chaine.edit',compact('chaine'));
-
+        $resultat=Resultat::find($id);
+        return view('resultat.edit', compact('resultat'));
     }
 
     /**
@@ -89,11 +82,10 @@ return back();
      */
     public function update(Request $request, $id)
     {
-        $chaine=Chaine::find($id);
+        $resultat=Resultat::find($id);
         $this->validate($request, $this->validationRules());
-        $chaine->update($request->all());
-        return redirect()->route('Chaine.show', [$chaine]);
-
+        $resultat->update($request->all());
+        return redirect()->route('resultat.show', [$resultat]);
     }
 
     /**
@@ -104,17 +96,13 @@ return back();
      */
     public function destroy($id)
     {
-        Chaine::where('id',$id)->delete();
-        return redirect()->route('Chaine.index');
+        Resultat::where('id',$id)->delete();
+         return redirect()->route('resultat.index');
     }
-
     private function validationRules()
     {
         return [
-            'nom' => 'required|max:50|min:2',
-            'type' => 'required|max:50|min:2',
-            'lien' => 'required|max:120|min:5',
-
+            'date_resultat' => 'required|max:50|min:2',
         ];
     }
 }

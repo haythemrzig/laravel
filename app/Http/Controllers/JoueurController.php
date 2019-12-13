@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Chaine;
+use App\Joueur;
 use Illuminate\Http\Request;
 
-class ChaineController extends Controller
+class JoueurController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class ChaineController extends Controller
      */
     public function index()
     {
-        $chaine= Chaine::orderBy('nom')->paginate(2);
-        return view('Chaine.index',[
-            'chaines'=> $chaine
+        $joueur= Joueur::orderBy('nom')->paginate(2);
+        return view('Joueur.index',[
+            'joueurs'=> $joueur
         ]);
     }
 
@@ -27,8 +27,8 @@ class ChaineController extends Controller
      */
     public function create()
     {
-        $chaine = new Chaine();
-        return view('chaine.index');
+        $joueur = new Joueur();
+        return view('Joueur.index');
     }
 
     /**
@@ -41,17 +41,17 @@ class ChaineController extends Controller
     {
         request()->validate([
             'nom' => 'required',
-            'type' => 'required',
-            'lien' => 'required'
+            'prenom' => 'required',
+            'datedenaissance' => 'required'
         ]);
         $nom = request('nom');
-        $type = request('type');
-        $lien = request('lien');
-        $chaine=new Chaine();
-        $chaine->nom=$nom;
-        $chaine->type=$type;
-        $chaine->lien=$lien;
-        $chaine->save();
+        $prenom = request('prenom');
+        $datedenaissance = request('datedenaissance');
+        $joueur=new Joueur();
+        $joueur->nom=$nom;
+        $joueur->prenom=$prenom;
+        $joueur->datedenaissance=$datedenaissance;
+        $joueur->save();
 return back();
     }
 
@@ -63,8 +63,8 @@ return back();
      */
     public function show($id)
     {
-        $chaine=Chaine::find($id);
-        return view('Chaine.show')->with('chaine', $chaine);
+        $joueur=Joueur::find($id);
+        return view('Joueur.show')->with('joueur', $joueur);
     }
 
     /**
@@ -75,9 +75,8 @@ return back();
      */
     public function edit($id)
     {
-        $chaine=Chaine::find($id);
-        return view('Chaine.edit',compact('chaine'));
-
+        $joueur=Joueur::find($id);
+        return view('Joueur.edit',compact('joueur'));
     }
 
     /**
@@ -89,11 +88,10 @@ return back();
      */
     public function update(Request $request, $id)
     {
-        $chaine=Chaine::find($id);
+        $joueur=Joueur::find($id);
         $this->validate($request, $this->validationRules());
-        $chaine->update($request->all());
-        return redirect()->route('Chaine.show', [$chaine]);
-
+        $joueur->update($request->all());
+        return redirect()->route('Joueur.show', [$joueur]);
     }
 
     /**
@@ -104,16 +102,16 @@ return back();
      */
     public function destroy($id)
     {
-        Chaine::where('id',$id)->delete();
-        return redirect()->route('Chaine.index');
+        Joueur::where('id',$id)->delete();
+        return redirect()->route('Joueur.index');
     }
 
     private function validationRules()
     {
         return [
             'nom' => 'required|max:50|min:2',
-            'type' => 'required|max:50|min:2',
-            'lien' => 'required|max:120|min:5',
+            'prenom' => 'required|max:50|min:2',
+            'datedenaissance' => 'required',
 
         ];
     }

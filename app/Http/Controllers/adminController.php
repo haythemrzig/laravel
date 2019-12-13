@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Chaine;
 use Illuminate\Http\Request;
+use App\admin;
 
-class ChaineController extends Controller
+class adminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,10 @@ class ChaineController extends Controller
      */
     public function index()
     {
-        $chaine= Chaine::orderBy('nom')->paginate(2);
-        return view('Chaine.index',[
-            'chaines'=> $chaine
-        ]);
-    }
+        $admin= admin::orderBy('nom')->paginate(10);
+        return view('admin.index',[
+            'admin'=> $admin
+        ]);    }
 
     /**
      * Show the form for creating a new resource.
@@ -27,8 +26,9 @@ class ChaineController extends Controller
      */
     public function create()
     {
-        $chaine = new Chaine();
-        return view('chaine.index');
+        $admin = new admin();
+        return view('admin.index');
+
     }
 
     /**
@@ -41,18 +41,24 @@ class ChaineController extends Controller
     {
         request()->validate([
             'nom' => 'required',
-            'type' => 'required',
-            'lien' => 'required'
+            'prenom' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+
         ]);
         $nom = request('nom');
-        $type = request('type');
-        $lien = request('lien');
-        $chaine=new Chaine();
-        $chaine->nom=$nom;
-        $chaine->type=$type;
-        $chaine->lien=$lien;
-        $chaine->save();
+        $prenom = request('prenom');
+        $email = request('email');
+        $password = request('password');
+        $admin=new admin();
+        $admin->nom=$nom;
+        $admin->prenom=$prenom;
+        $admin->email=$email;
+        $admin->password=$password;
+
+        $admin->save();
 return back();
+
     }
 
     /**
@@ -63,8 +69,8 @@ return back();
      */
     public function show($id)
     {
-        $chaine=Chaine::find($id);
-        return view('Chaine.show')->with('chaine', $chaine);
+        $admin=admin::find($id);
+        return view('admin.show')->with('admin', $admin);
     }
 
     /**
@@ -75,8 +81,8 @@ return back();
      */
     public function edit($id)
     {
-        $chaine=Chaine::find($id);
-        return view('Chaine.edit',compact('chaine'));
+        $admin=admin::find($id);
+        return view('admin.edit', compact('admin'));
 
     }
 
@@ -89,12 +95,10 @@ return back();
      */
     public function update(Request $request, $id)
     {
-        $chaine=Chaine::find($id);
+        $admin=admin::find($id);
         $this->validate($request, $this->validationRules());
-        $chaine->update($request->all());
-        return redirect()->route('Chaine.show', [$chaine]);
-
-    }
+        $admin->update($request->all());
+        return redirect()->route('admin.show', [$admin]);    }
 
     /**
      * Remove the specified resource from storage.
@@ -104,17 +108,19 @@ return back();
      */
     public function destroy($id)
     {
-        Chaine::where('id',$id)->delete();
-        return redirect()->route('Chaine.index');
+        admin::where('id',$id)->delete();
+         return redirect()->route('admin.index');
+
     }
 
     private function validationRules()
     {
         return [
             'nom' => 'required|max:50|min:2',
-            'type' => 'required|max:50|min:2',
-            'lien' => 'required|max:120|min:5',
-
+            'prenom' => 'required|max:50|min:2',
+            'email' => 'required|max:50|min:2',
+            'password' => 'required|max:50|min:2',
         ];
     }
+
 }

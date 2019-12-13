@@ -14,10 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('admin', 'adminController');
 
 
 Route::resource('Ligues', 'LeagueController');
 Route::resource('Chaine', 'ChaineController');
+
 Route::resource('Equipes','EquipeController');
 
 Route::get('/Equipe/showequipe/{id}','EquipeController@showequipe' );
+
+Route::resource('Joueur', 'JoueurController');
+
+Route::resource('resultat', 'ResultatController');
+
+
+
