@@ -1,5 +1,9 @@
+@extends('layouts.Myapp')
+@section('content')
+@if (Auth::check())
+<div class="container"style="background:#fff;padding:5%;">
+
 <fieldset>
-    <legend>Editer le ligue <strong>{{ $chaine->nom }} {{ $chaine->type }}{{ $chaine->lien }}</strong></legend>
     <form action="{{ route('Chaine.update', $chaine->id) }}" method="post">
         @csrf
         @method('PATCH')
@@ -20,6 +24,9 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-success">Update</button>
     </form>
 </fieldset>
+</div>
+@endif
+@endsection

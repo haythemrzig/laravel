@@ -1,6 +1,13 @@
+@extends('layouts.Myapp')
+@section('content')
+@if (Auth::check())
+<div class="container"style="background:#fff;padding:5%;">
+
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ $chaine->nom.' '.$chaine->type.' '.$chaine->lien }}</h3>
+        <h3 class="panel-title">{{ $chaine->nom}}</h3>
+        <p>{{$chaine->type}}</p>
+        <h6>{{$chaine->lien}}</h6>
     </div>
     <div class="panel-footer py-2">
             <div class="row">
@@ -15,3 +22,6 @@
             </div>
         </div>
 </div>
+</div>
+@endif
+@endsection
