@@ -13,7 +13,7 @@
             <div>
                 <div class="sidebarbox-title" style="background:white;color:black;border-bottom:1px solid black;">
                     <h2>{{ $equipe->nom }}
-                           <img src="../../images/{{$equipe->logo}}"  style="width:40px; height:auto;float:right;" class="img-fluid"/>
+                      <img src="../../images/{{$equipe->logo}}"  style="width:40px; height:auto;float:right;" class="img-fluid"/>
                     </h2>
 
                 </div>

@@ -7,6 +7,91 @@
     <img src="images/photos/football.jpg" alt="" />
 </div>
 <!-- PAGE CONTAINER -->
+
+@if (Auth::check())
+<div style="background:#fff;width:100%">
+    
+
+<div style="background:#fff;padding:3%;;width:75%;margin:auto">
+    <fieldset>
+        <legend>Ajouter un ligue</strong> 
+            
+        </legend>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ligue</th>
+            <th scope="col">Pays</th>
+            <th scope="col">Logo</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+    @foreach ($ligues as $ligue)
+    <tr>
+        <th scope="row">.</th>
+        <td>
+        {{ $ligue->nom }}
+        </td>
+        <td> 
+            {{ $ligue->pays }}
+        </td>
+        <td>
+        <img src="images/{{$ligue->image}}" width="35px" heigth="auto"/>
+        </td>
+        <td>
+            <form action="{{ route('Ligues.destroy', $ligue->id)}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                <button class="btn btn-danger" type="submit">Delete</button>
+              </form>
+        </td>
+         
+        <td>
+              <form action="{{ route('Ligues.show', $ligue->id)}}" method="get">
+                @csrf
+            <button class="btn btn-info" type="submit">Afficher</button>
+          </form>    
+        </td>
+        </tr>
+        @endforeach 
+    </tbody>
+    </table>
+    <hr>
+
+<form action="/Ligues" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group">
+        <input class="form-control @error('nom') is-invalid @enderror" type="text" name="nom" placeholder="Equipe"/>
+        @error('nom')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+
+        <input class="form-control @error('pays') is-invalid @enderror" type="text" name="pays" placeholder="pays"/>
+        @error('pays')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"/>
+        @error('image')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <small>le fichier doit etre de type .jpeg,.jpg.png</small>
+    </div>
+    <hr>
+    <button type="submit" class="btn btn-success">Ajouter</button>
+</form>
+</fieldset>
+</div>
+    
+@endif
+</div>
+
+
+
+
+
 <section class="pagecontainer">
     <!--vertical Tabs-->
     <div id="verticalTab">
@@ -61,43 +146,5 @@
 
 
 
-<ul>
-    @foreach ($ligues as $ligue)
-        <li>{{ $ligue->nom }} {{ $ligue->pays }}<img src="images/{{$ligue->image}}" width="100px" heigth="100px"/>
-            <form action="{{ route('Ligues.destroy', $ligue->id)}}" method="post">
-                    @method('DELETE')
-                    @csrf
-                <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
-         <form action="{{ route('Ligues.show', $ligue->id)}}" method="get">
-                @csrf
-            <button class="btn btn-danger" type="submit">Afficher</button>
-          </form>    
-            
-            
-        </li>  
-    @endforeach 
-    {{ $ligues->links() }}     
 
-</ul>    
 
-<form action="/Ligues" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-        <input class="form-control @error('nom') is-invalid @enderror" type="text" name="nom"/>
-        @error('nom')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-
-        <input class="form-control @error('pays') is-invalid @enderror" type="text" name="pays"/>
-        @error('pays')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"/>
-        @error('image')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <small>le fichier doit etre de type .jpeg,.jpg.png</small>
-    </div>
-    <button type="submit" class="btn btn-primary">Ajouter</button>
-</form>

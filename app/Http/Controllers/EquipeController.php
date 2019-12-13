@@ -140,4 +140,9 @@ class EquipeController extends Controller
         return view('Equipe.showequipe',['equipe'=>$equipe,
                                             'joueur'=>$joueur]);
     }
+
+    function all() {
+        $equipe=equipe::all();
+        return view('Equipe.list',['equipes'=>$equipe]);
+    }
 }

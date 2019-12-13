@@ -1,5 +1,10 @@
+@extends('layouts.Myapp')
+@section('content')
+
+@if (Auth::check())
+<div class="container"style="background:#fff;padding:5%;">
+
 <fieldset>
-    <legend>Editer le date de match <strong>{{ $match->date_debut.' '.$match->score_home.' '.$match->score_away.' '.$match->equipe_home.' '.$match->equipe_away}}
     </strong></legend>
     <form action="{{ route('match.update', $match->id) }}" method="post">
         @csrf
@@ -34,3 +39,6 @@
             <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </fieldset>
+</div>
+@endif
+@endsection
