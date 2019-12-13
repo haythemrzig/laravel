@@ -3,6 +3,80 @@
 
 
 <section class="maincontainer">
+@if (Auth::check())
+<div style="background:#fff;padding:3%;;width:100%;margin:auto">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">image</th>
+      <th scope="col">status</th>
+      
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach ($actualite as $subactualite)
+    <tr>
+      <th scope="row">1</th>
+      <td>
+      <img src="../images/{{$subactualite->image}}" width="100px" heigth="100px"/>
+      </td>
+      <td>
+      {{ $subactualite->status  }}
+      </td>
+    
+
+      <td>
+      <form action="{{ route('actualite.destroy', $subactualite->id)}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                <button class="btn btn-outline-danger btn-block" type="submit">Delete</button>
+              </form>
+      </td>
+
+
+      <td>
+      <form action="{{ route('actualite.show', $subactualite->id)}}" method="get">
+                @csrf
+            <button class="btn btn-outline-primary btn-block" type="submit">Afficher</button>
+          </form> 
+      </td>
+    </tr>
+    @endforeach 
+</tbody>
+</table>
+
+
+
+
+   
+
+<form action="/actualite" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group">
+        <input class="form-control @error('status') is-invalid @enderror" type="text" name="status" placeholder="Status"/>
+        @error('status')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <input class="form-control @error('description') is-invalid @enderror" type="text" name="description"placeholder="description"/>
+        @error('description')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"/>
+        @error('image')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <small>le fichier doit etre de type .jpeg,.jpg.png</small>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+</form>
+</div>
+@endif
+
             <!-- FLEXSLIDER -->
             <section class="flex-wrapper">
                 <div id="slider" class="flexslider">
@@ -245,51 +319,3 @@
 
 
 
-
-
-
-
-
-
-
-
-<ul>
-    @foreach ($actualite as $subactualite)
-        <li><img src="images/{{$subactualite->image}}" width="100px" heigth="100px"/>{{ $subactualite->status  }} {{ $subactualite->description }} 
-            <form action="{{ route('actualite.destroy', $subactualite->id)}}" method="post">
-                    @method('DELETE')
-                    @csrf
-                <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
-         <form action="{{ route('actualite.show', $subactualite->id)}}" method="get">
-                @csrf
-            <button class="btn btn-danger" type="submit">Afficher</button>
-          </form>    
-            
-            
-        </li>  
-    @endforeach 
-
-</ul>    
-
-<form action="/actualite" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-        <input class="form-control @error('status') is-invalid @enderror" type="text" name="status"/>
-        @error('status')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <input class="form-control @error('description') is-invalid @enderror" type="text" name="description"/>
-        @error('description')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"/>
-        @error('image')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-        <small>le fichier doit etre de type .jpeg,.jpg.png</small>
-    </div>
-
-
-    <button type="submit" class="btn btn-primary">Ajouter</button>
-</form>

@@ -61,7 +61,6 @@
 
 
 
-
 <ul>
     @foreach ($ligues as $ligue)
         <li>{{ $ligue->nom }} {{ $ligue->pays }}<img src="images/{{$ligue->image}}" width="100px" heigth="100px"/>

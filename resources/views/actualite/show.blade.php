@@ -1,7 +1,16 @@
+@extends('layouts.Myapp')
+@section('content')
+
+@if (Auth::check())
+<div class="container"style="background:#fff;padding:5%;">
 <div class="panel panel-default">
+<img src="../images/{{$actualite->image}}" width="100px" heigth="100px"/>
+
     <div class="panel-heading">
-        <h3 class="panel-title">{{ $actualite->status.' '.$actualite->description.' '.$actualite->created_at}}</h3>
-        <img src="../images/{{$actualite->image}}" width="100px" heigth="100px"/>
+        <h3 class="panel-title">{{ $actualite->status}} </h3>
+        
+        <p>{{$actualite->description}}</p>
+        <h6>{{$actualite->created_at}}</h6>
             </div>
     <div class="panel-footer py-2">
             <div class="row">
@@ -16,3 +25,7 @@
             </div>
         </div>
 </div>
+
+</div>
+@endif
+@endsection
