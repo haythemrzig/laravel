@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    
+
+
 <!-- Mirrored from sporty.wp4life.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Oct 2019 17:25:11 GMT -->
 <head>
         <title>Homepage</title>
@@ -25,6 +25,7 @@
         <!--[if lt IE 9]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+
         
     </head>
     <style>
@@ -62,9 +63,14 @@
             transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
         </style>
+
+
+    </head>
+
+
     <body>
         <!-- SUB MENU -->
-        
+
         @include('Layouts.Menu')
         @yield('content')
         @include('Layouts.footer')
@@ -81,7 +87,9 @@
         <script type="text/javascript" src="{{ asset('js/easyResponsiveTabs.js') }}"></script>
 
 
+
         
+
         <!-- BG IMAGE -->
         <script type="text/javascript">
             jQuery(window).load(function() {
