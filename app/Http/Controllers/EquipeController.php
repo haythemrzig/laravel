@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\League;
-use App\equipe;
+use App\Equipe;
 
-class LeagueController extends Controller
+class EquipeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,9 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        $league= League::orderBy('nom')->paginate(10);
-        $equipes = equipe::all();
-
-        return view('Ligue.index',[
-            'ligues'=> $league,
-            'equipes'=> $equipes
+        $equipe= Equipe::orderBy('nom')->paginate(10);
+        return view('Equipe.index',[
+            'equipes'=> $equipe
         ]);
     }
 
@@ -31,8 +27,8 @@ class LeagueController extends Controller
      */
     public function create()
     {
-        $ligue = new League();
-        return view('League.index');
+        $equipe = new Equipe();
+        return view('Equipe.index');
     }
 
     /**
@@ -46,21 +42,21 @@ class LeagueController extends Controller
         request()->validate([
             'nom' => 'required',
             'pays' => 'required',
-            'image' => '
+            'logo' => '
             required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
-        $nom = request('nom');
-        $pays = request('pays');
-        $ligue=new League();
-
-        $image=$request->file('image');
+        
+        $image=$request->file('logo');
         $new_name= rand() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path("images"),$new_name);
 
-        $ligue->nom=$nom;
-        $ligue->pays=$pays;
-        $ligue->image=$new_name;
-        $ligue->save();
+        $nom = request('nom');
+        $pays = request('pays');
+        $equipe=new Equipe();
+        $equipe->logo=$new_name;
+        $equipe->nom=$nom;
+        $equipe->pays=$pays;
+        $equipe->save();
         return back();
     }
 
@@ -72,8 +68,9 @@ class LeagueController extends Controller
      */
     public function show($id)
     {
-        $ligue=League::find($id);
-        return view('Ligue.show')->with('ligue', $ligue);
+        $equipe=Equipe::find($id);
+        return view('Equipe.show')->with('equipe', $equipe);
+   
     }
 
     /**
@@ -84,8 +81,8 @@ class LeagueController extends Controller
      */
     public function edit($id)
     {
-        $ligue=League::find($id);
-        return view('Ligue.edit', compact('ligue'));
+        $equipe=Equipe::find($id);
+        return view('Equipe.edit', compact('equipe'));
 
     }
 
@@ -97,19 +94,20 @@ class LeagueController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   $ligue=League::find($id);
+    {
+        $equipe=Equipe::find($id);
         request()->validate([
             'nom' => 'required',
             'pays' => 'required',
-            'image' => '
-            image|mimes:jpeg,png,jpg,gif|max:2048'
+            'logo' => '
+            required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
-        $image=$request->file('image');
+        $image=$request->file('logo');
         $new_name= rand() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path("images"),$new_name);
-        $ligue->image=$new_name;
-        $ligue->update();
-       return redirect()->route('Ligues.show', [$ligue]);
+        $equipe->logo=$new_name;
+        $equipe->update();
+        return redirect()->route('Equipes.show', [$equipe]);
 
     }
 
@@ -121,30 +119,22 @@ class LeagueController extends Controller
      */
     public function destroy($id)
     {
-        League::where('id',$id)->delete();
-         return redirect()->route('Ligues.index');
+        Equipe::where('id',$id)->delete();
+         return redirect()->route('Equipes.index');
     }
 
     private function validationRules()
     {
         return [
+            'logo' => 'required|max:50|min:2',
             'nom' => 'required|max:50|min:2',
             'pays' => 'required|max:50|min:2',
         ];
     }
-/*
-    function upload(Request $request){
-        $this->validate($request,[
-            'image' => '
-            required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
-        $image=$request->file('image');
-        $new_name= rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path("images"),$new_name);
-        return back()->with('path',$new_name);
+
+
+    function showequipe($id) {
+        $equipe=equipe::find($id);
+        return view('Equipe.showequipe',['equipe'=>$equipe]);
     }
-  */  
-
-
-  
 }
