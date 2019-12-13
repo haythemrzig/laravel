@@ -11,7 +11,7 @@
       <th scope="col">#</th>
       <th scope="col">image</th>
       <th scope="col">status</th>
-      
+
       <th scope="col"></th>
       <th scope="col"></th>
     </tr>
@@ -26,7 +26,7 @@
       <td>
       {{ $subactualite->status  }}
       </td>
-    
+
 
       <td>
       <form action="{{ route('actualite.destroy', $subactualite->id)}}" method="post">
@@ -41,17 +41,17 @@
       <form action="{{ route('actualite.show', $subactualite->id)}}" method="get">
                 @csrf
             <button class="btn btn-outline-primary btn-block" type="submit">Afficher</button>
-          </form> 
+          </form>
       </td>
     </tr>
-    @endforeach 
+    @endforeach
 </tbody>
 </table>
 
 
 
 
-   
+
 
 <form action="/actualite" method="POST" enctype="multipart/form-data">
     @csrf
@@ -158,7 +158,7 @@
                 <!-- LEFT CONTAINER -->
                 <section class="leftcontainer">
                     <h1>Latest News</h1>
-            
+
                     <!-- POST -->
                     @foreach ($actualite as $a)
                     <article class="post">

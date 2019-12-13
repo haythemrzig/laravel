@@ -1,8 +1,13 @@
+@extends('layouts.Myapp')
+@section('content')
+
+@if (Auth::check())
+<div class="container"style="background:#fff;padding:5%;">
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ $match->date_debut.' '.$match->score_home.' '.$match->score_away.' '.$match->equipe_home.' '.$match->equipe_away}}
+        <h3 class="panel-title">{{ $match->equipe_home.' VS '.$match->equipe_away}}
         </h3>
-
+    <h6>{{$match->date_debut}}</h6>
     </div>
     <div class="panel-footer py-2">
             <div class="row">
@@ -17,3 +22,6 @@
             </div>
         </div>
 </div>
+</div>
+@endif
+@endsection
