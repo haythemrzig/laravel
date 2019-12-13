@@ -16,7 +16,6 @@ class CreateEquipesTable extends Migration
         Schema::create('equipes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('logo');
-            $table->string('historique');
             $table->string('nom');
             $table->string('pays');
             $table->timestamps();
@@ -31,5 +30,7 @@ class CreateEquipesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('equipes');
+        
+
     }
 }

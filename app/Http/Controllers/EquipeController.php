@@ -40,19 +40,20 @@ class EquipeController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'logo' => 'required',
-            'historique' => 'required',
             'nom' => 'required',
-            'pays' => 'required'
+            'pays' => 'required',
+            'logo' => '
+            required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         
-        $logo = request('logo');
-        $historique = request('historique');
+        $image=$request->file('logo');
+        $new_name= rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("images"),$new_name);
+
         $nom = request('nom');
         $pays = request('pays');
         $equipe=new Equipe();
-        $equipe->logo=$logo;
-        $equipe->historique=$historique;
+        $equipe->logo=$new_name;
         $equipe->nom=$nom;
         $equipe->pays=$pays;
         $equipe->save();
@@ -95,8 +96,17 @@ class EquipeController extends Controller
     public function update(Request $request, $id)
     {
         $equipe=Equipe::find($id);
-        $this->validate($request, $this->validationRules());
-        $equipe->update($request->all());
+        request()->validate([
+            'nom' => 'required',
+            'pays' => 'required',
+            'logo' => '
+            required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        $image=$request->file('logo');
+        $new_name= rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("images"),$new_name);
+        $equipe->logo=$new_name;
+        $equipe->update();
         return redirect()->route('Equipes.show', [$equipe]);
 
     }
@@ -117,9 +127,14 @@ class EquipeController extends Controller
     {
         return [
             'logo' => 'required|max:50|min:2',
-            'historique' => 'required|max:50|min:2',
             'nom' => 'required|max:50|min:2',
             'pays' => 'required|max:50|min:2',
         ];
+    }
+
+
+    function showequipe($id) {
+        $equipe=equipe::find($id);
+        return view('Equipe.showequipe',['equipe'=>$equipe]);
     }
 }

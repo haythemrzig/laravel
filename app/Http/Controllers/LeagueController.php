@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\League;
+use App\equipe;
 
 class LeagueController extends Controller
 {
@@ -15,8 +16,11 @@ class LeagueController extends Controller
     public function index()
     {
         $league= League::orderBy('nom')->paginate(10);
+        $equipes = equipe::all();
+
         return view('Ligue.index',[
-            'ligues'=> $league
+            'ligues'=> $league,
+            'equipes'=> $equipes
         ]);
     }
 
@@ -140,4 +144,7 @@ class LeagueController extends Controller
         return back()->with('path',$new_name);
     }
   */  
+
+
+  
 }
