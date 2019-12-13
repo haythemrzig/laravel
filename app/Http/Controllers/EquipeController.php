@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Equipe;
+use App\Joueur;
+use Illuminate\Http\Request;
 
 class EquipeController extends Controller
 {
@@ -45,7 +46,7 @@ class EquipeController extends Controller
             'logo' => '
             required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
-        
+
         $image=$request->file('logo');
         $new_name= rand() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path("images"),$new_name);
@@ -70,7 +71,7 @@ class EquipeController extends Controller
     {
         $equipe=Equipe::find($id);
         return view('Equipe.show')->with('equipe', $equipe);
-   
+
     }
 
     /**
@@ -135,6 +136,8 @@ class EquipeController extends Controller
 
     function showequipe($id) {
         $equipe=equipe::find($id);
-        return view('Equipe.showequipe',['equipe'=>$equipe]);
+        $joueur=Joueur::all();
+        return view('Equipe.showequipe',['equipe'=>$equipe,
+                                            'joueur'=>$joueur]);
     }
 }

@@ -1,43 +1,4 @@
-@extends('layouts.Myapp')
-@section('content')
 
-<div class="page-title">Equipes</div>
-<!-- FEATURED IMAGE -->
-<div class="page-img">
-    <img src="images/photos/football.jpg" alt="" />
-</div>
-<!-- PAGE CONTAINER -->
-<section class="pagecontainer">
-    <!--vertical Tabs-->
-    <div id="verticalTab">
-        
-        <div class="resp-tabs-container">
-            <div>
-                <div class="sidebarbox-title">
-                    <h3>{{ $equipe->nom }}</h3>
-                </div>
-            <!-- TABLE -->
-            <div class="fixture-row">
-                   
-                <a href="result.html">
-                    <div class="fixture-row-left">
-                        
-                    </div>
-                    <div class="fixture-row-right">
-                    </div>
-                </a>
-            </div>
-            </div>
-                <!--- endfor -->
-           
-           
-            
-            
-            
-        </div>
-    </div>
-</section>
-@endsection
 
 
 
@@ -68,14 +29,14 @@
          <form action="{{ route('Equipes.show', $equipe->id)}}" method="get">
                 @csrf
             <button class="btn btn-danger" type="submit">Afficher</button>
-          </form>    
-            
-            
-        </li>  
-    @endforeach 
-    {{ $equipes->links() }}     
+          </form>
 
-</ul>    
+
+        </li>
+    @endforeach
+    {{ $equipes->links() }}
+
+</ul>
 
 <form action="/Equipes" method="POST" enctype="multipart/form-data">
     @csrf
@@ -94,7 +55,7 @@
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
         <small>le fichier doit etre de type .jpeg,.jpg.png</small>
-        
+
     </div>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
