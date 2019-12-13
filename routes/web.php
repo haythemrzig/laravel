@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('admin', 'adminController');
+Route::resource('actualite', 'actualiteController');
 
 
 Route::resource('Ligues', 'LeagueController');
