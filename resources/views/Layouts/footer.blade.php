@@ -5,57 +5,56 @@
         <div id="footer-widgets">
             <!-- WIDGET 1 -->
             <div class="footer-widget first-clmn">
-                <h5>Recent Posts</h5>
+                <h5>A propos nous?</h5>
                 <ul>
                     <li>
-                        <a href="blog.html">Suspendisse ipsum urna</a>
+                        <a href="#">Othmen Bedoui</a>
                     </li>
                     <li>
-                        <a href="blog.html">Pellentesque eget por</a>
+                        <a href="#">Foued Lameri</a>
                     </li>
                     <li>
-                        <a href="blog.html">Aliquam sit amet urne</a>
+                        <a href="#">Mohamed Bekir</a>
                     </li>
                     <li>
-                        <a href="blog.html">Ornare dapibus ornare et</a>
+                        <a href="#">Haithem Rzig</a>
                     </li>
                     <li>
-                        <a href="blog.html">Donec et odio et amet</a>
                     </li>
                 </ul>
             </div>
             <!-- WIDGET 2 -->
             <div class="footer-widget second-clmn">
-                <h5>Categories</h5>
+                <h5>Nos taches</h5>
                 <ul>
                     <li>
-                        <a href="single-post.html">Lorem Ipsum Dolor eget por</a>
+                        <a href="#">Laravel</a>
                     </li>
                     <li>
-                        <a href="single-post.html">Nibh Mauris lucem id sagit</a>
+                        <a href="#">Symfony</a>
                     </li>
                     <li>
-                        <a href="single-post.html">Donec in lorem mauris</a>
+                        <a href="#">Spring Boot & J2EE</a>
                     </li>
                     <li>
-                        <a href="single-post.html">Auctor Mauris Dolor urna loe</a>
+                        <a href="#">Node JS & Angular JS</a>
                     </li>
                     <li>
-                        <a href="single-post.html">Mauris id posuere</a>
+                        <a href="#">Android & IONIC</a>
                     </li>
                 </ul>
             </div>
             <!-- WIDGET 3 -->
             <div class="footer-widget third-clmn">
-                <h5>Flickr Feed</h5>
+                <h5>Notre Localisation</h5>
                 <!-- FLICKR WIDGET -->
-                <ul id="cbox" class="flickr-box"></ul>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1596.9594236120593!2d10.185934104502994!3d36.82046452210828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd34895e732523%3A0xc4eb1fd40616c074!2sULT!5e0!3m2!1sfr!2stn!4v1576285173757!5m2!1sfr!2stn" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                 <!-- END -->
             </div>
         </div>
         <div class="clear"></div>
         <!-- COPYRIGHT -->
-        <div class="credits">Copyright Egemenerd</div>
+        <div class="credits">Copyright Reserved</div>
         <!-- SOCIAL ICONS -->
         <ul class="social-icons">
             <li>

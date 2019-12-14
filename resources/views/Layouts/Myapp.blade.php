@@ -4,7 +4,7 @@
 
 <!-- Mirrored from sporty.wp4life.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Oct 2019 17:25:11 GMT -->
 <head>
-        <title>Homepage</title>
+        <title>Accueil</title>
         <!-- META TAGS -->
         <meta charset="utf-8">
         <meta name="viewport" content="user-scalable=0,width=device-width,height=device-height,initial-scale=1,maximum-scale=1" />
@@ -64,7 +64,7 @@
 
     </head>
 
-        
+
     </head>
     <style>
         .btn-success {
@@ -72,7 +72,7 @@
             background-color: #28a745;
             border-color: #28a745;
         }
-        
+
         .btn-danger {
             color: #fff;
             background-color: #dc3545;
