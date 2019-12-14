@@ -11,20 +11,16 @@
             <li>
                 <a href="galleries.html">Gallery</a>
             </li>
-            <li>
-                <a href="contact.html">Contact</a>
-            </li>
+
         </ul>
     </nav>
     <!-- LOGIN MENU -->
     <nav id="submenu-login">
         <ul>
             <li>
-                <a href="#">Register</a>
+            <a href="contact.html">Contact</a>
             </li>
-            <li>
-                <a href="#">Login</a>
-            </li>
+
         </ul>
     </nav>
 </section>
@@ -70,7 +66,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="Equipe/all">
+                        <a href="all">
                             <span>Equipe</span>
                         </a>
                     </li>
@@ -89,40 +85,8 @@
                     <span>Match</span>
                 </a>
             </li>
-            <li>
-                <a href="galleries.html">
-                    <span>Gallery</span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="galleries.html">
-                            <span>Galleries</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="single-gallery.html">
-                            <span>Single Gallery</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="blog.html">
-                    <span>Blog</span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="blog.html">
-                            <span>Blog</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="single-post.html">
-                            <span>Single Post</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+
+
             <li>
                 <a href="contact.html">
                     <span>Contact</span>

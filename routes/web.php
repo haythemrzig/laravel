@@ -24,7 +24,7 @@ Route::resource('Chaine', 'ChaineController');
 Route::resource('Equipes','EquipeController');
 
 Route::get('/Equipe/showequipe/{id}','EquipeController@showequipe' );
-Route::get('/Equipe/all','EquipeController@all' );
+Route::get('all','EquipeController@all' );
 
 Route::resource('Joueur', 'JoueurController');
 Route::resource('match', 'MatchController');
