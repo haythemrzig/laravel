@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\actualite;
 use App\Match;
+use App\actualite;
 use Illuminate\Http\Request;
+
 class actualiteController extends Controller
 {
     /**
@@ -15,8 +16,10 @@ class actualiteController extends Controller
     public function index()
     {
         $actualite= actualite::all();
+        $matches= Match::all();
         return view('actualite.index',[
-            'actualite'=> $actualite
+            'actualite'=> $actualite,
+            'matches'=>$matches
         ]);
      }
 
@@ -30,6 +33,7 @@ class actualiteController extends Controller
 
     {
     $actualite = new actualite();
+
     return view ('actualite.index');
     }
 

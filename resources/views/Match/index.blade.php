@@ -67,7 +67,7 @@
 </div>
 @endif
 <!-- FIXTURE TITLE -->
-<div class="scores-title">Les résultats de derniers match</div>
+<div class="scores-title">Les prochaines matchs et les derniers résultats</div>
 <!-- FIXTURE SLIDER -->
 <section class="transparent-bg">
     <div id="fixture">
@@ -89,7 +89,7 @@
 </section>
 
 <!-- FIXTURE TITLE -->
-<div class="scores-title">Upcoming Matches & Latest Results</div>
+<div class="scores-title">Les prochains match</div>
 <!-- FIXTURE SLIDER -->
 <section class="transparent-bg">
     <div id="fixture">
