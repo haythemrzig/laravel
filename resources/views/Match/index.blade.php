@@ -10,6 +10,7 @@
             <th scope="col">Equipe Away</th>
             <th scope="col">score Home</th>
             <th scope="col">scofe Away</th>
+            <th scope="col">Chaine</th>
             <th scope="col"></th>
             <th scope="col"></th>
           </tr>
@@ -21,6 +22,7 @@
             <td>{{ $match->equipe_away}}</td>
             <td>{{ $match->score_home}}</td>
             <td>{{ $match->score_away}}</td>
+            <td>{{ $match->chaine}}</td>
             <td><form action="{{ route('match.destroy', $match->id)}}" method="post">
                 @method('DELETE')
                 @csrf
@@ -61,6 +63,11 @@
         @error('equipe_away')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
+
+        <input class="form-control @error('chaine') is-invalid @enderror" type="text" name="chaine" placeholder="chaine"/>
+        @error('chaine')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
@@ -93,24 +100,30 @@
 <!-- FIXTURE SLIDER -->
 <section class="transparent-bg">
     <div id="fixture">
-
+        <article class="post">
             @foreach ($matchs as $m)
-            @if($m->score_home === '?')
-        <div class="slide-content">
-            <div class="match-results">
-                <span>{{$m->equipe_home}}</span>
-                <span class="score">? - ?</span>
-                <span>{{$m->equipe_away}}</span>
-            </div>
-            <div class="match-place">
-                <span>Date de match : {{$m->date_debut}}</span>
-                <span class="red">
-                    <a href="/Chaine">Voir en direct</a>
-                </span>
-            </div>
-        </div>
-        @endif
+        @if($m->score_home === '?')
+            <figure>
+                
+                    <div class="match-results">
+                        <span>{{$m->equipe_home}}</span>
+                        <span class="score">? - ?</span>
+                        <span>{{$m->equipe_away}}</span>
+                    </div>
+                
+                <figcaption style="margin-left: 305px;margin-right: auto;width:37%;text-align: center;">
+                    <a href="{{ route('match.show', $m->id)}}">  <h2>Voir en direct</h2></a>
+                    <div class="post-date">
+                        Date de match : {{$m->date_debut}}
+                    </div>
+                </figcaption>
+            </figure>
+            @endif
         @endforeach
+        </article>
+
+        
+
 
 
     </div>

@@ -18,8 +18,7 @@
 <!-- HEADER -->
 <header id="header">
     <div class="logo">
-        <img src="{{ asset('images/logo.png')}}" alt="" />
-        <span>Site Officiel de votre équipe</span>
+        <img src="{{ asset('images/logo.png')}}" alt="" />  
     </div>
 </header>
 <div class="clear"></div>
@@ -34,12 +33,12 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="actualite">
+                        <a href="{{ route('actualite.index')}}">
                             <span>Actualite</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Chaine">
+                        <a href="{{ route('Chaine.index')}}">
                             <span>Chaine TV</span>
                         </a>
                     </li>
@@ -51,7 +50,7 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="Ligues">
+                        <a href="{{ route('Ligues.index')}}">
                             <span>Ligue</span>
                         </a>
                     </li>
@@ -61,17 +60,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="Joueur">
+                        <a href="{{ route('Joueur.index')}}">
                             <span>Joueur</span>
                         </a>
                     </li>
-
-
-
                 </ul>
             </li>
             <li>
-                <a href="match">
+                <a href="{{ route('match.index')}}">
                     <span>Match</span>
                 </a>
             </li>

@@ -45,6 +45,7 @@ class MatchController extends Controller
             'score_away'=> 'required',
             'equipe_home'=> 'required',
             'equipe_away'=> 'required',
+            'chaine'=> 'required'
 
 
         ]);
@@ -53,14 +54,14 @@ class MatchController extends Controller
         $score_away = request('score_away');
         $equipe_home = request('equipe_home');
         $equipe_away = request('equipe_away');
-
+        $chaine = request('chaine');
         $match=new Match();
         $match->date_debut=$date_debut;
         $match->score_home=$score_home;
         $match->score_away=$score_away;
         $match->equipe_home=$equipe_home;
         $match->equipe_away=$equipe_away;
-
+        $match->chaine=$chaine;
         $match->save();
         return back();
     }
@@ -105,7 +106,7 @@ class MatchController extends Controller
             'score_away'=> 'required',
             'equipe_home'=> 'required',
             'equipe_away'=> 'required',
-
+            'chaine'=> 'required'
 
         ]);
 
@@ -114,13 +115,14 @@ class MatchController extends Controller
         $score_away = request('score_away');
         $equipe_home = request('equipe_home');
         $equipe_away = request('equipe_away');
+        $chaine = request('chaine');
 
         $match->date_debut=$date_debut;
         $match->score_home=$score_home;
         $match->score_away=$score_away;
         $match->equipe_home=$equipe_home;
         $match->equipe_away=$equipe_away;
-
+        $match->chaine=$chaine;
         $match->update();
         return redirect()->route('match.show', [$match]);
     }
@@ -144,6 +146,8 @@ class MatchController extends Controller
             'score_away'=> 'required',
             'equipe_home'=> 'required|max:50|min:2',
             'equipe_away'=> 'required|max:50|min:2',
+            'chaine'=> 'required|max:50|min:2',
+
         ];
     }
 }

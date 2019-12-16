@@ -35,6 +35,11 @@
                 @error('equipe_away')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+
+                <input class="form-control @error('chaine') is-invalid @enderror" type="text" name="chaine" placeholder="chaine"/>
+                  @error('chaine')
+                 <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
     </form>

@@ -96,8 +96,13 @@
 
 
                 <script type='text/javascript'>ch='{{$ch->lien}}'; ch_width=600; ch_height=400;</script>
-                <script type='text/javascript' src='https://arembed.com/live.js'></script>
-
+                <script type='text/javascript'>
+                document.write('<iframe src="https://arembed.com/live.php?ch='+ 
+                ch +'&vw='+ch_width+'&vh='+ch_height+'&domain='+document.domain+
+                '" width='+ ch_width +' height=' + ch_height +
+                 ' scrolling=no frameborder=0 scrolling=no allowtransparency=true allowfullscreen></iframe>') ;
+                
+                </script>
             </div>
             </div>
 
