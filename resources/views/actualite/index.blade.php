@@ -82,87 +82,32 @@
 </div>
 @endif
 
-            <!-- FLEXSLIDER -->
-            <section class="flex-wrapper">
-                <div id="slider" class="flexslider">
-                    <ul class="slides">
-                        <li>
-                            <div class="flex-title">
-                                <h3>Apolloni Codicellos</h3>
-                                <p>Quo eram amet aliqua incurreret et de velit duis aut iudicem. Culpa voluptatibus incurreret magna deserunt.</p>
-                            </div>
-                            <img src="images/photos/large1.jpg" alt="" maxheigth="100px"/>
-                        </li>
-                        <li>
-                            <div class="flex-title">
-                                <h3>Apolloni Codicellos</h3>
-                                <p>Quo eram amet aliqua incurreret et de velit duis aut iudicem. Culpa voluptatibus incurreret magna deserunt.</p>
-                            </div>
-                            <img src="images/photos/large2.jpg" alt="" maxheigth="100px" />
-                        </li>
-                        <li>
-                            <div class="flex-title">
-                                <h3>Apolloni Codicellos</h3>
-                                <p>Quo eram amet aliqua incurreret et de velit duis aut iudicem. Culpa voluptatibus incurreret magna deserunt.</p>
-                            </div>
-                            <img src="images/photos/large3.jpg" alt="" maxheigth="100px" />
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            <div class="clear"></div>
             <!-- FIXTURE TITLE -->
-            <div class="scores-title">Upcoming Matches & Latest Results</div>
-            <!-- FIXTURE SLIDER -->
-            <section class="transparent-bg">
-                <div id="fixture">
-                    <div class="slide-content">
-                        <div class="match-results">
-                            <span>Voluptate Cillum FC</span>
-                            <span class="score">? - ?</span>
-                            <span>Deserunt Quorum FC</span>
-                        </div>
-                        <div class="match-place">
-                            <span>11th Mar 2014 - 10:00 PM at Quamquam Stadium</span>
-                            <span class="red">
-                                <a href="fixtures.html">Buy Ticket</a>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="slide-content">
-                        <div class="match-results">
-                            <span>Deserunt Quorum FC</span>
-                            <span class="score">2 - 1</span>
-                            <span>Voluptate Cillum FC</span>
-                        </div>
-                        <div class="match-place">
-                            <span>07th Mar 2014 - 11:00 PM at Suspendisse Stadium</span>
-                            <span class="red">
-                                <a href="result.html">Report</a>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="slide-content">
-                        <div class="match-results">
-                            <span>Voluptate Cillum FC</span>
-                            <span class="score">1 - 3</span>
-                            <span>Deserunt Quorum FC</span>
-                        </div>
-                        <div class="match-place">
-                            <span>03th Mar 2014 - 09:00 PM at Quamquam Stadium</span>
-                            <span class="red">
-                                <a href="result.html">Report</a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </section>
-            <!-- PAGE CONTAINER -->
+<div class="scores-title">Les prochaines matchs et les derniers résultats</div>
+<!-- FIXTURE SLIDER -->
+<section class="transparent-bg">
+    <div id="fixture">
+        @foreach ($matches as $m)
+        <div class="slide-content">
+            <div class="match-results">
+            <span>{{$m->equipe_home}}</span>
+                <span class="score">{{$m->score_home}} - {{$m->score_away}} </span>
+                <span>{{$m->equipe_away}}</span>
+            </div>
+            <div class="match-place">
+                <span class="red">Date de match : {{$m->date_debut}}</span>
+
+            </div>
+        </div>
+        @endforeach
+    </div>
+    <div class="clear"></div>
+</section>
+ <!-- PAGE CONTAINER -->
             <section class="pagecontainer">
                 <!-- LEFT CONTAINER -->
                 <section class="leftcontainer">
-                    <h1>Latest News</h1>
+                    <h1>Dernier actualitées</h1>
 
                     <!-- POST -->
                     @foreach ($actualite as $a)
@@ -191,7 +136,7 @@
                 <section class="rightcontainer">
                     <!-- SIDEBAR BOX -->
                     <div class="sidebarbox">
-                        <h3>Search</h3>
+                        <h3>Recherche</h3>
                         <form id="searchform" class="searchbox">
                             <input type="text" id="search" class="field searchtext" placeholder="Keyword..." />
                             <input type="submit" class="button" name="submit" value="Go" />
@@ -199,81 +144,28 @@
                     </div>
                     <!-- SIDEBAR BOX -->
                     <div class="sidebarbox">
-                        <h3>About Our Team</h3>
-                        <p>Elit cernantur in pariatur. Te illum de aute, a incididunt te pariatur. Vidisse aut tempor. Eu aut lorem cernantur, occaecat dolor mandaremus consequat. Do labore excepteur, dolor id admodum. Fabulas fugiat eiusmod incididunt. Si voluptate ita ullamco, iis minim incurreret voluptatibus an officia domesticarum nam cernantur est quis mentitum.
-                            <a href="club.html">Read More...</a>
+                        <h3>Actualités</h3>
+                        <p>Le site est basées sur les actualitées de football pour etre à jour et instantanément à nos jours, nos infos , nos derniers actualités. Soyez les bienvenues.
+                            <a href="#">Read More...</a>
                         </p>
                     </div>
                     <!-- SIDEBAR BOX -->
                     <div class="sidebarbox">
                         <div class="sidebarbox-title">
-                            <h3>Fixture</h3>
+                            <h3>Dernier résultats</h3>
                         </div>
                         <!-- TABLE -->
+
                         <div class="fixture-row">
+                            @foreach ($matches as $m)
                             <a href="result.html">
-                                <div class="fixture-row-left">Consectetur FC
-                                    <div>?</div>
+                                <div class="fixture-row-left">{{$m->equipe_home}}
+                                    <div>{{$m->score_home}}</div>
                                 </div>
                                 <div class="fixture-row-right">
-                                    <div>?</div>Voluptate Cillum FC</div>
+                                    <div>{{$m->score_away}}</div>{{$m->equipe_away}}</div>
                             </a>
-                            <a href="result.html">
-                                <div class="fixture-row-left">Fabulas FC
-                                    <div>1</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>3</div>Voluptate Cillum FC</div>
-                            </a>
-                            <a href="result.html">
-                                <div class="fixture-row-left">Voluptate Cillum FC
-                                    <div>4</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>1</div>Vidisse FC</div>
-                            </a>
-                            <a href="result.html">
-                                <div class="fixture-row-left">Elit FC
-                                    <div>2</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>4</div>Voluptate Cillum FC</div>
-                            </a>
-                            <a href="result.html">
-                                <div class="fixture-row-left">Voluptate Cillum FC
-                                    <div>1</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>1</div>Domesticarum FC</div>
-                            </a>
-                            <a href="result.html">
-                                <div class="fixture-row-left">Ullamco FC
-                                    <div>6</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>1</div>Voluptate Cillum FC</div>
-                            </a>
-                            <a href="result.html">
-                                <div class="fixture-row-left">Incididunt FC
-                                    <div>1</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>5</div>Voluptate Cillum FC</div>
-                            </a>
-                            <a href="result.html">
-                                <div class="fixture-row-left">Voluptate Cillum FC
-                                    <div>2</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>1</div>Pariatur FC</div>
-                            </a>
-                            <a href="result.html">
-                                <div class="fixture-row-left">Voluptate Cillum FC
-                                    <div>1</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>3</div>Mentitum FC</div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                     <!-- SIDEBAR BOX -->

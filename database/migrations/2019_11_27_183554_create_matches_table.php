@@ -20,6 +20,7 @@ class CreateMatchesTable extends Migration
             $table->string('score_away');
             $table->string('equipe_home');
             $table->string('equipe_away');
+            $table->string('chaine');
             $table->timestamps();
         });
     }
