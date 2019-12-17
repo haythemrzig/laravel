@@ -3,12 +3,27 @@
     <nav id="submenu">
         <ul>
 
+            <li>
+                <a href="match">Accueil</a>
+            </li>
+            <li>
+                <a href="Chaine">Chaine TV</a>
+            </li>
+            <li>
+                <a href="actualite">Actualite</a>
+            </li>
+
 
         </ul>
     </nav>
     <!-- LOGIN MENU -->
     <nav id="submenu-login">
         <ul>
+
+            <li>
+            <a href="Contacts">Contact</a>
+            </li>
+
 
 
         </ul>
@@ -28,8 +43,8 @@
     <nav>
         <ul id="mainmenu">
             <li>
-                <a href="#">
-                    <span>Homepage</span>
+                <a href="match">
+                    <span>Accueil</span>
                 </a>
                 <ul>
                     <li>
@@ -74,7 +89,7 @@
 
 
             <li>
-                <a href="contact.html">
+                <a href="Contacts">
                     <span>Contact</span>
                 </a>
             </li>

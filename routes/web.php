@@ -11,9 +11,14 @@
 |
 */
 
+Route::resource('/', 'MatchController');
+
 Route::get('/','MatchController@index');
 Route::resource('admin', 'adminController');
 Route::resource('actualite', 'actualiteController');
+Route::resource('Contacts', 'ContactsController');
+
+
 
 
 Route::resource('Ligues', 'LeagueController');
