@@ -5,51 +5,67 @@
         <div id="footer-widgets">
             <!-- WIDGET 1 -->
             <div class="footer-widget first-clmn">
-                <h5>Recent Posts</h5>
+                <h5>Categories</h5>
                 <ul>
                     <li>
-                        <a href="blog.html">Suspendisse ipsum urna</a>
+                        <a href="actualite">Actualite</a>
                     </li>
                     <li>
-                        <a href="blog.html">Pellentesque eget por</a>
+                        <a href="Chaine">Chaine TV</a>
                     </li>
                     <li>
-                        <a href="blog.html">Aliquam sit amet urne</a>
+                        <a href="Ligues">Ligue</a>
                     </li>
                     <li>
-                        <a href="blog.html">Ornare dapibus ornare et</a>
+                        <a href="all">Equipe</a>
                     </li>
                     <li>
-                        <a href="blog.html">Donec et odio et amet</a>
+                        <a href="Joueur">Joueur</a>
                     </li>
                 </ul>
             </div>
             <!-- WIDGET 2 -->
             <div class="footer-widget second-clmn">
-                <h5>Categories</h5>
+                <h5>competition equipment</h5>
                 <ul>
                     <li>
-                        <a href="single-post.html">Lorem Ipsum Dolor eget por</a>
+                        <p>Ligue 1</p>
                     </li>
                     <li>
-                        <a href="single-post.html">Nibh Mauris lucem id sagit</a>
+                    <p>Seria A</p>
                     </li>
                     <li>
-                        <a href="single-post.html">Donec in lorem mauris</a>
+                    <p>Liga</p>
                     </li>
                     <li>
-                        <a href="single-post.html">Auctor Mauris Dolor urna loe</a>
+                    <p>Premier League</p>
                     </li>
                     <li>
-                        <a href="single-post.html">Mauris id posuere</a>
+                    <p>Bundesliga</p>
                     </li>
                 </ul>
             </div>
             <!-- WIDGET 3 -->
             <div class="footer-widget third-clmn">
-                <h5>Flickr Feed</h5>
+                <h5>competition national</h5>
+                <ul>
+                    <li>
+                        <p>Coupe du monde 2018</p>
+                    </li>
+                    <li>
+                    <p>Coupe d'Afrique</p>
+                    </li>
+                    <li>
+                    <p>Coupe d'Europe</p>
+                    </li>
+                    <li>
+                    <p>Coupe d'asie</p>
+                    </li>
+                    <li>
+                    <p>Coupe d'amérique</p>
+                    </li>
+                </ul>
                 <!-- FLICKR WIDGET -->
-                <ul id="cbox" class="flickr-box"></ul>
                 <!-- END -->
             </div>
         </div>

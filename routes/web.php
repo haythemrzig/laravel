@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', 'MatchController');
+
 Route::resource('admin', 'adminController');
 Route::resource('actualite', 'actualiteController');
+Route::resource('Contacts', 'ContactsController');
+
+
 
 
 Route::resource('Ligues', 'LeagueController');
