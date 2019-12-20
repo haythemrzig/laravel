@@ -17,10 +17,29 @@ class LeagueController extends Controller
     {
         $league= League::orderBy('nom')->paginate(10);
         $equipes = equipe::all();
+        $key='jZ0k0MZ2llBm91jW';
+        $secret="LSmyvgRUIfHPq0gJ0h40443ppEMzG6vs";
+
+        $url="http://livescore-api.com/api-client/fixtures/leagues.json?key=".$key."&secret=".$secret;
+        $data=file_get_contents($url);
+        $d = json_decode($data,true);
+         $dPremierLeague = $this->getLigue(25,$key,$secret);
+         $dSeriea = $this->getLigue(73,$key,$secret);
+         $dliga= $this->getLigue(74,$key,$secret);
+        $dligue1= $this->getLigue(46,$key,$secret);
+        $dbundesliga= $this->getLigue(114,$key,$secret);
+        $dtunisia= $this->getLigue(746,$key,$secret);
 
         return view('Ligue.index',[
             'ligues'=> $league,
-            'equipes'=> $equipes
+            'equipes'=> $equipes,
+            'data'=>$d,
+            'dataPremierLeague'=>$dPremierLeague,
+            'dataSeriea'=>$dSeriea,
+            'dataliga'=>$dliga,
+            'dataligue1'=>$dligue1,
+            'databundesliga'=>$dbundesliga,
+            'datatunisia'=>$dtunisia
         ]);
     }
 
@@ -145,6 +164,11 @@ class LeagueController extends Controller
     }
   */  
 
-
+public function getLigue($id,$key,$secret){
+    $url="http://livescore-api.com/api-client/leagues/table.json?key=".$key."&secret=".$secret."&league=".$id."\&season=4";
+    $data=file_get_contents($url);
+    $d = json_decode($data,true);
+    return $d;
+}
   
 }

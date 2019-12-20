@@ -15,11 +15,19 @@ class actualiteController extends Controller
      */
     public function index()
     {
+        $key='jZ0k0MZ2llBm91jW';
+        $secret="LSmyvgRUIfHPq0gJ0h40443ppEMzG6vs";
+        $url="http://livescore-api.com/api-client/scores/live.json?key=".$key."&secret=".$secret;
+        $data=file_get_contents($url);
+        $d = json_decode($data,true);
+
+
         $actualite= actualite::all();
         $matches= Match::all();
         return view('actualite.index',[
             'actualite'=> $actualite,
-            'matches'=>$matches
+            'matches'=>$matches,
+            'data' => $d
         ]);
      }
 

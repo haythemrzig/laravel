@@ -78,15 +78,21 @@
 <!-- FIXTURE SLIDER -->
 <section class="transparent-bg">
     <div id="fixture">
-        @foreach ($matchs as $m)
+        @foreach ($data["data"]["match"] as $d)
         <div class="slide-content">
             <div class="match-results">
-            <span>{{$m->equipe_home}}</span>
-                <span class="score">{{$m->score_home}} - {{$m->score_away}} </span>
-                <span>{{$m->equipe_away}}</span>
+            <span>{{$d["home_name"]}}</span>
+                <span class="score">
+                @if ($d["ft_score"]=="")
+                ?-?
+                @else 
+                {{$d["ft_score"]}}
+                @endif
+                </span>
+                <span>{{$d["away_name"]}}</span>
             </div>
             <div class="match-place">
-                <span class="red">Date de match : {{$m->date_debut}}</span>
+                <span class="red">Date de match : {{$d["scheduled"]}}</span>
 
             </div>
         </div>
