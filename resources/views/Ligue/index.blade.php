@@ -7,6 +7,7 @@
     <img src="images/photos/football.jpg" alt="" />
 </div>
 <!-- PAGE CONTAINER -->
+<h2>ligues</h2>
 
 @if (Auth::check())
 <div style="background:#fff;width:100%">
@@ -96,41 +97,262 @@
     <!--vertical Tabs-->
     <div id="verticalTab">
         <ul class="resp-tabs-list">
-                @foreach ($ligues as $ligue)
-            <li>{{ $ligue->nom }} <img  class="fixture-row-right" src="images/{{$ligue->image}}"  style="width:50px; height:50px;"/></li>
-                @endforeach
+            <li>Premier League</li>
+            <li>Serie a</li>
+            <li>LaLiga</li>
+            <li>Ligue 1</li>
+            <li>BundesLiga </li>  
+            <li>Ligue Professionnelle 1 TUN </li>          
         </ul>
         <div class="resp-tabs-container">
-                @foreach ($ligues as $ligue)
-
+           
             <div>
                 <div class="sidebarbox-title">
-                    <h3>{{ $ligue->nom }}</h3>
+                    <h3>PREMIER LEAGUE</h3>
                 </div>
             <!-- TABLE -->
             <div class="fixture-row">
-                    @foreach ($equipes as $equipe)
-                    @if($ligue->pays === $equipe->pays)
-            <a href="/Equipe/showequipe/{{$equipe->id}}" >
-                    <div class="fixture-row-left">
-                         {{$equipe->nom}}
-                    </div>
-                    <div class="fixture-row-right">
-                            <img src="images/{{$equipe->logo}}"  style="width:50px; height:20px;"/>
-                    </div>
-                </a>
-                    @endif
-                    @endforeach
+                    
+                   <table>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>MP</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>G</th>
+                        <th>Pts</th>
+                    </tr>
+                        @foreach ($dataPremierLeague["data"]["table"] as $d)
+                        <tr>
+                            <td>{{$d['rank']}}</td>
+                            <td> {{$d['name']}} </td>
+                            <td>{{$d['matches']}}</td>
+                            <td>{{$d['won']}}</td>
+                            <td>{{$d['drawn']}}</td>
+                            <td>{{$d['lost']}}</td>
+                            <td>{{$d['goals_scored']}}:{{$d['goals_conceded']}}</td>
+                            <td>{{$d['points']}}</td>
+                        </tr>
+                        @endforeach
+                   </table>
+                
+                    
+                </div>
             </div>
-            </div>
-            @endforeach
-                <!--- endfor -->
-           
-           
-            
-            
-            
         </div>
+<!-- -------------------------------------------------------------------------------------- -->            
+        
+
+        <div class="resp-tabs-container">
+           
+            <div>
+                <div class="sidebarbox-title">
+                    <h3>Seria a</h3>
+                </div>
+            <!-- TABLE -->
+            <div class="fixture-row">
+                    
+                   <table>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>MP</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>G</th>
+                        <th>Pts</th>
+                    </tr>
+                        @foreach ($dataSeriea["data"]["table"] as $d)
+                        <tr>
+                            <td>{{$d['rank']}}</td>
+                            <td> {{$d['name']}} </td>
+                            <td>{{$d['matches']}}</td>
+                            <td>{{$d['won']}}</td>
+                            <td>{{$d['drawn']}}</td>
+                            <td>{{$d['lost']}}</td>
+                            <td>{{$d['goals_scored']}}:{{$d['goals_conceded']}}</td>
+                            <td>{{$d['points']}}</td>
+                        </tr>
+                        @endforeach
+                   </table>
+                
+                    
+            </div>
+            </div>     
+        </div>
+
+<!-- -------------------------------------------------------------------------------------- -->            
+        
+
+<div class="resp-tabs-container">
+           
+    <div>
+        <div class="sidebarbox-title">
+            <h3>LaLiga</h3>
+        </div>
+    <!-- TABLE -->
+    <div class="fixture-row">
+            
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>MP</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>G</th>
+                <th>Pts</th>
+            </tr>
+                @foreach ($dataliga["data"]["table"] as $d)
+                <tr>
+                    <td>{{$d['rank']}}</td>
+                    <td> {{$d['name']}} </td>
+                    <td>{{$d['matches']}}</td>
+                    <td>{{$d['won']}}</td>
+                    <td>{{$d['drawn']}}</td>
+                    <td>{{$d['lost']}}</td>
+                    <td>{{$d['goals_scored']}}:{{$d['goals_conceded']}}</td>
+                    <td>{{$d['points']}}</td>
+                </tr>
+                @endforeach
+           </table>
+        
+            
+    </div>
+    </div>     
+</div>
+
+<!-- -------------------------------------------------------------------------------------- -->            
+        
+
+<div class="resp-tabs-container">
+           
+    <div>
+        <div class="sidebarbox-title">
+            <h3>Ligue 1</h3>
+        </div>
+    <!-- TABLE -->
+    <div class="fixture-row">
+            
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>MP</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>G</th>
+                <th>Pts</th>
+            </tr>
+                @foreach ($dataligue1["data"]["table"] as $d)
+                <tr>
+                    <td>{{$d['rank']}}</td>
+                    <td> {{$d['name']}} </td>
+                    <td>{{$d['matches']}}</td>
+                    <td>{{$d['won']}}</td>
+                    <td>{{$d['drawn']}}</td>
+                    <td>{{$d['lost']}}</td>
+                    <td>{{$d['goals_scored']}}:{{$d['goals_conceded']}}</td>
+                    <td>{{$d['points']}}</td>
+                </tr>
+                @endforeach
+           </table>
+        
+            
+    </div>
+    </div>     
+</div>
+
+<!-- -------------------------------------------------------------------------------------- -->            
+        
+
+<div class="resp-tabs-container">
+           
+    <div>
+        <div class="sidebarbox-title">
+            <h3>BundesLiga</h3>
+        </div>
+    <!-- TABLE -->
+    <div class="fixture-row">
+            
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>MP</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>G</th>
+                <th>Pts</th>
+            </tr>
+                @foreach ($databundesliga["data"]["table"] as $d)
+                <tr>
+                    <td>{{$d['rank']}}</td>
+                    <td> {{$d['name']}} </td>
+                    <td>{{$d['matches']}}</td>
+                    <td>{{$d['won']}}</td>
+                    <td>{{$d['drawn']}}</td>
+                    <td>{{$d['lost']}}</td>
+                    <td>{{$d['goals_scored']}}:{{$d['goals_conceded']}}</td>
+                    <td>{{$d['points']}}</td>
+                </tr>
+                @endforeach
+           </table>
+        
+            
+    </div>
+    </div>     
+</div>
+
+<!-- -------------------------------------------------------------------------------------- -->            
+        
+
+<div class="resp-tabs-container">
+           
+    <div>
+        <div class="sidebarbox-title">
+            <h3>Ligue Professionnelle 1 TUN</h3>
+        </div>
+    <!-- TABLE -->
+    <div class="fixture-row">
+            
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>MP</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>G</th>
+                <th>Pts</th>
+            </tr>
+                @foreach ($datatunisia["data"]["table"] as $d)
+                <tr>
+                    <td>{{$d['rank']}}</td>
+                    <td> {{$d['name']}} </td>
+                    <td>{{$d['matches']}}</td>
+                    <td>{{$d['won']}}</td>
+                    <td>{{$d['drawn']}}</td>
+                    <td>{{$d['lost']}}</td>
+                    <td>{{$d['goals_scored']}}:{{$d['goals_conceded']}}</td>
+                    <td>{{$d['points']}}</td>
+                </tr>
+                @endforeach
+           </table>
+        
+            
+    </div>
+    </div>     
+</div>
+
+
     </div>
 </section>
 @endsection

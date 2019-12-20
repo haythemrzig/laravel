@@ -87,15 +87,21 @@
 <!-- FIXTURE SLIDER -->
 <section class="transparent-bg">
     <div id="fixture">
-        @foreach ($matches as $m)
+        @foreach ($data["data"]["match"] as $d)
         <div class="slide-content">
             <div class="match-results">
-            <span>{{$m->equipe_home}}</span>
-                <span class="score">{{$m->score_home}} - {{$m->score_away}} </span>
-                <span>{{$m->equipe_away}}</span>
+            <span>{{$d["home_name"]}}</span>
+                <span class="score">
+                @if ($d["ft_score"]=="")
+                ?-?
+                @else 
+                {{$d["ft_score"]}}
+                @endif
+                </span>
+                <span>{{$d["away_name"]}}</span>
             </div>
             <div class="match-place">
-                <span class="red">Date de match : {{$m->date_debut}}</span>
+                <span class="red">Date de match : {{$d["scheduled"]}}</span>
 
             </div>
         </div>
@@ -112,10 +118,10 @@
                     <!-- POST -->
                     @foreach ($actualite as $a)
                     <article class="post">
-                        <figure>
-                            <a href="single-post.html">
-                                <img src="images/{{$a->image}}" alt="" />
-                            </a>
+                        <figure style="heigth:150px;width:300px;">
+                            
+                                <img src="images/{{$a->image}}" alt=""/>
+                            
                             <figcaption>
                                 <h2>{{$a->status}}</h2>
                                 <div class="post-date">{{$a->created_at}}</div>
@@ -157,15 +163,29 @@
                         <!-- TABLE -->
 
                         <div class="fixture-row">
-                            @foreach ($matches as $m)
-                            <a href="result.html">
-                                <div class="fixture-row-left">{{$m->equipe_home}}
-                                    <div>{{$m->score_home}}</div>
-                                </div>
-                                <div class="fixture-row-right">
-                                    <div>{{$m->score_away}}</div>{{$m->equipe_away}}</div>
-                            </a>
+                            <table>
+                                <tr><th>Home</th>
+                                    <th>Score</th>
+                                    
+                                    <th>Away</th>
+                                </tr>
+                            @foreach ($data["data"]["match"] as $d)                            <a href="result.html">
+                                
+                                    <tr>
+                                        <td>{{$d["home_name"]}}</td>
+                                        <td>
+                                        @if ($d["ft_score"]=="")
+                                    ?-?
+                                    @else 
+                                    {{$d["ft_score"]}}
+                                    @endif
+                                        </td>
+                                
+                                
+                                <td>{{$d["away_name"]}}</td>
+                                    </tr>
                             @endforeach
+                                </table>
                         </div>
                     </div>
                     <!-- SIDEBAR BOX -->

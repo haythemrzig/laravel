@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class MatchController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,12 +15,19 @@ class MatchController extends Controller
      */
     public function index()
     {
+        $key='jZ0k0MZ2llBm91jW';
+        $secret="LSmyvgRUIfHPq0gJ0h40443ppEMzG6vs";
+        $url="http://livescore-api.com/api-client/scores/live.json?key=".$key."&secret=".$secret;
+        $data=file_get_contents($url);
+        $d = json_decode($data,true);
         $match= Match::all();
+       
         return view('match.index',[
-            'matchs'=> $match
-        ]);
+            'matchs'=> $match,
+            'data' => $d       
+                                        ]);
+            
     }
-
     /**
      * Show the form for creating a new resource.
      *
