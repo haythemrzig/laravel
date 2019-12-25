@@ -146,7 +146,7 @@ body{background-color:RGB(242,242,242);color:rgb(51,51,51);font-size:16px;line-h
 .filter-days a.yesterday{background:-webkit-gradient(linear,left top,left bottom,from(rgb(4,142,227)),to(rgb(1,97,159)));background:-webkit-linear-gradient(top,rgb(4,142,227) 0%,rgb(1,97,159) 100%);background:-moz-linear-gradient(top,rgb(4,142,227) 0%,rgb(1,97,159) 100%);background:-o-linear-gradient(top,rgb(4,142,227) 0%,rgb(1,97,159) 100%);background:linear-gradient(to bottom,rgb(4,142,227) 0%,rgb(1,97,159) 100%)}
 .filter-days a.today{background:-webkit-gradient(linear,left top,left bottom,from(RGB(255,36,35)),to(rgb(210,12,12)));background:-webkit-linear-gradient(top,RGB(255,36,35) 0%,rgb(210,12,12) 100%);background:-moz-linear-gradient(top,RGB(255,36,35) 0%,rgb(210,12,12) 100%);background:-o-linear-gradient(top,RGB(255,36,35) 0%,rgb(210,12,12) 100%);background:linear-gradient(to bottom,RGB(255,36,35) 0%,rgb(210,12,12) 100%)}
 .filter-days a.tomorrow{background-image:-webkit-gradient(linear,left top,left bottom,from(RGB(255,200,63)),to(RGB(255,156,0)));background-image:-webkit-linear-gradient(top,RGB(255,200,63) 0%,RGB(255,156,0) 100%);background-image:-moz-linear-gradient(top,RGB(255,200,63) 0%,RGB(255,156,0) 100%);background-image:-o-linear-gradient(top,RGB(255,200,63) 0%,RGB(255,156,0) 100%);background-image:linear-gradient(to bottom,RGB(255,200,63) 0%,RGB(255,156,0) 100%)}
-.alba_sports_events-event_item{text-align:center;width:100%;display:block;overflow:hidden;margin:10px 0;position:relative;z-index:9999;padding:0 7px}
+.alba_sports_events-event_item{text-align:center;width:80%;display:block;overflow:hidden;margin:10px 10px 10px 50px;position:relative;z-index:9999;padding:0 7px}
 .event_inner{margin:0;width:100%;float:right;padding:0 20px;position:relative;height:32px;display:block;color:beige}
 .team-aria{position:relative;float:right;width:-webkit-calc(50% - 75px);width:-moz-calc(50% - 75px);width:calc(50% - 75px);display:block;text-align:center;height:32px;z-index:22;color:rgb(119,119,119);background:-webkit-gradient(linear,left top,left bottom,from(rgb(255,255,255)),to(rgb(239,239,239)));background:-webkit-linear-gradient(top,rgb(255,255,255) 0%,rgb(239,239,239) 100%);background:-moz-linear-gradient(top,rgb(255,255,255) 0%,rgb(239,239,239) 100%);background:-o-linear-gradient(top,rgb(255,255,255) 0%,rgb(239,239,239) 100%);background:linear-gradient(to bottom,rgb(255,255,255) 0%,rgb(239,239,239) 100%);-webkit-box-shadow:inset 0 -1px 0 1px rgba(0,0,0,0.05),inset 0 -1px 15px rgba(0,0,0,0.19);-moz-box-shadow:inset 0 -1px 0 1px rgba(0,0,0,0.05),inset 0 -1px 15px rgba(0,0,0,0.19);box-shadow:inset 0 -1px 0 1px rgba(0,0,0,0.05),inset 0 -1px 15px rgba(0,0,0,0.19)}
 .team-first{-webkit-transform:skew(-30deg);-moz-transform:skew(-30deg);-ms-transform:skew(-30deg);-o-transform:skew(-30deg);transform:skew(-30deg);-webkit-border-radius:8px 0;-moz-border-radius:8px 0;border-radius:8px 0}
@@ -258,7 +258,6 @@ body{background-color:RGB(242,242,242);color:rgb(51,51,51);font-size:16px;line-h
                     <h1 class="title">Match Today</h1>
                     </div>
                     @foreach ($matchs as $m)
-                    @if($m->score_home === '?')
 
 <li class="alba_sports_events-event_item">
     <a href="{{ route('match.show', $m->id)}}" title="Voir En Direct">
@@ -275,9 +274,9 @@ body{background-color:RGB(242,242,242);color:rgb(51,51,51);font-size:16px;line-h
                                     <div class="alba_sports_events-team_title">{{$m->equipe_home}}</div>
                                 </div>
                                 <div class="event_title_wrapper">
-                                        <div class="events-team_score numb"> ? </div>
+                                        <div class="events-team_score numb"> {{$m->score_home}} </div>
                                         <div class="event_status">-</div>
-                                        <div class="events-team_score numb"> ? </div>
+                                        <div class="events-team_score numb"> {{$m->score_away}} </div>
                                 </div><div class="team-aria team-second">
                                     <div class="alba-team_logo">
                                         <amp-img alt="{{$m->equipe_away}}" src="images/{{$m->image_away}}" width="35" height="35"></amp-img>
@@ -294,7 +293,6 @@ body{background-color:RGB(242,242,242);color:rgb(51,51,51);font-size:16px;line-h
                             </div>
                         </a>
                     </li>
-                    @endif
         @endforeach
 
             </div>
